@@ -32,6 +32,7 @@ namespace NatML
 
         private void OnDisable() => pipeline?.Dispose();
 
+        [System.Obsolete]
         private async void Start()
         {
             // カメラが許可されているか

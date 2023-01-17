@@ -47,12 +47,25 @@ namespace NatML.Visualizers
             // pointÇÃç¿ïWÇ…KeyPointÇà⁄ìÆ
             var prefabTransform = prefab.transform as RectTransform;
             var imageTransform = rawImage.transform as RectTransform;
+         
             prefabTransform.anchorMin = 0.5f * Vector2.one;
             prefabTransform.anchorMax = 0.5f * Vector2.one;
             prefabTransform.pivot = 0.5f * Vector2.one;
             prefabTransform.anchoredPosition = Rect.NormalizedToPoint(imageTransform.rect, point);
+
             currentHands.Add(prefab.gameObject);
         }
+
+        //private void AddBones(Vector2 point)
+        //{
+        //    var bonePrefab = Instantiate(bones, transform);
+        //    bonePrefab.gameObject.SetActive(true);
+        //    // pointÇÃç¿ïWÇ…KeyPointÇà⁄ìÆ
+        //    var bonesPrefabTransform = bonePrefab.transform as RectTransform;
+        //    var boneTransform = bones.transform as RectTransform;
+            
+        //    bonesPrefabTransform.anchoredPosition = Rect.NormalizedToPoint(boneTransform.rect, point);
+        //}
 
         /// <summary>
         /// KeyPointÇ∆boneÇÃï`âÊ
@@ -109,11 +122,16 @@ namespace NatML.Visualizers
                         hand.keypoints.indexMCP, hand.keypoints.middleMCP, hand.keypoints.ringMCP,
                         hand.keypoints.pinkyMCP
                     },
-                }.Select(points => points.Select(p => (Vector2)p).ToArray()));
+                }.Select(points => points.Select(p => GetFixedPoint(p)).ToArray()));
             }
 
             bones.Points = null;
             bones.Segments = segments;
+        }
+
+        private Vector2 GetFixedPoint(Vector2 vec)
+        {
+            return new Vector2(vec.x * Screen.width - Screen.width / 2, vec.y * Screen.height - Screen.height / 2);
         }
     }
 }
