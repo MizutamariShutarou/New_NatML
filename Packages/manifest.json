@@ -2,8 +2,17 @@
   "scopedRegistries": [
     {
       "name": "NatML",
-      "url": "https://registry.npmjs.com",
-      "scopes": [ "ai.natml" ]
+      "url": "https://registry.npmjs.com/",
+      "scopes": [
+        "ai.natml"
+      ]
+    },
+    {
+      "name": "npmjs",
+      "url": "https://registry.npmjs.org/",
+      "scopes": [
+        "com.unity.uiextensions"
+      ]
     }
   ],
   "dependencies": {
